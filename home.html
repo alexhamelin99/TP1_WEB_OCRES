@@ -59,18 +59,20 @@
                         <h3>Entrer en contact</h3>
                     </header>
 
-                    <form action="/action_page.php" class="was-validated">
+                    <form action="/action_page.php" class="needs-validation" novalidate>
                         <div class="form-row">
                             <div class="form-group col">
                                 <label for="nom"></label>
                                 <input type="text" class="form-control" name="nom" id="nom" aria-describedby="nomId" placeholder="Nom" required>
                                 <div class="valid-feedback"></div>
+                                <div class="invalid-feedback"></div>
                             </div>
 
                             <div class="form-group col">
                                 <label for="email"></label>
                                 <input type="email" class="form-control" name="email" id="email" aria-describedby="emailId" placeholder="adresse email" required>
                                 <div class="valid-feedback"></div>
+                                <div class="invalid-feedback"></div>
                             </div>
                         </div>
 
@@ -78,16 +80,40 @@
                             <label for="sujet"></label>
                             <input type="text" class="form-control" name="sujet" id="sujet" aria-describedby="sujetId" placeholder="Sujet" required>
                             <div class="valid-feedback"></div>
+                            <div class="invalid-feedback"></div>
                         </div>
 
                         <div class="form-group">
                             <label for="message"></label>
                             <textarea class="form-control" name="message" id="message" rows="3" placeholder="message" required></textarea>
                             <div class="valid-feedback"></div>
+                            <div class="invalid-feedback"></div>
                         </div>
 
                         <button type="envoyer" class="btn btn-primary">Envoyer</button>
                     </form>
+
+                    <script>
+                        // Disable form submissions if there are invalid fields
+                        (function() {
+                            'use strict';
+                            window.addEventListener('load', function() {
+                                // Get the forms we want to add validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function(form) {
+                                    form.addEventListener('submit', function(event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
+                    </script>
+
                     <footer></footer>
                 </article>
             </div>
